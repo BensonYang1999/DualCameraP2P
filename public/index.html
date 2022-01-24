@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>camera streaming</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="camera streaming">
+    <meta property="og:title" content="camera streaming">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body style="background-color:black; color: white;">
+    <section>
+        <button id="btn_start">start broadcasting</button>
+        <button id="btn_stop">stop broadcasting</button>
+        <button id="btn_mute">mute</button>
+    </section>
+    <section style="visibility:visible" id="sec_broadcaster">
+        <h1>PC 1 Tracker</h1>
+        <div style="overflow: hidden" id="div_video">
+            <video id="localVideo" autoplay muted></video>
+        </div> <br>
+        <select id="vedioSelect"></select>
+        <select id="audioSelect"></select>
+    </section>
+    <section style="visibility:visible" id="sec_watcher">
+        <h1>PC 2 Receiver</h1>
+        <video id="remoteVideo" autoplay></video>
+    </section>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/index.js"></script>
+</body>
+
+</html>
