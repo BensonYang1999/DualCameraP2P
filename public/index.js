@@ -22,8 +22,7 @@ function getResolution(stream) {
     let stream_height = stream_settings.height;
     console.log('Width: ' + stream_width + 'px');
     console.log('Height: ' + stream_height + 'px');
-    socket.emit("log", 'Width: ' + stream_width + 'px');
-    socket.emit("log", 'Height: ' + stream_height + 'px');
+    socket.emit("log", stream_width + ' x ' + stream_height + ' px');
 }
 
 navigator.mediaDevices
@@ -262,5 +261,8 @@ $(document).ready(() => {
     $("#btn_mute").click(() => {
         console.log("muted");
         $('#remoteVideo').prop("muted", !$('#remoteVideo').prop("muted"));
+    })
+    $('#btn_resolution').click(() => {
+        getResolution(remotevideo.srcObject);
     })
 })
