@@ -30,6 +30,10 @@ io.sockets.on("connection", socket => {
   var address = socket.handshake.address;
   console.log(`New client page from ${address}, id=${socket.id}`);
 
+  socket.on("log", (data) => {
+    console.log("log:", data);
+  })
+
   socket.on("broadcaster", () => {
     if (!(socket.id in broadcaster)) {
       broadcaster[socket.id] = socket.id;
