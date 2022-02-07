@@ -267,4 +267,17 @@ $(document).ready(() => {
     $('#btn_remote_res').click(() => {
         getResolution(remotevideo.srcObject);
     })
+    $('#btn_full').click(() => {
+        openFullscreen(remotevideo);
+    })
 })
+
+function openFullscreen(elem) {
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+    }
+}
