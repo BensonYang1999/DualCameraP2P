@@ -18,6 +18,13 @@ const constraints = { //相機限制
 navigator.mediaDevices
     .getUserMedia(constraints)
     .then(stream => {
+        // testing camera resolution
+        let stream_settings = stream.getVideoTracks()[0].getSettings();
+        let stream_width = stream_settings.width;
+        let stream_height = stream_settings.height;
+        console.log('Width: ' + stream_width + 'px');
+        console.log('Height: ' + stream_height + 'px');
+        
         localvideo.srcObject = stream;
         localStream = stream;
         navigator.mediaDevices.enumerateDevices().then((devices) => {
@@ -39,7 +46,6 @@ navigator.mediaDevices
                         audioSourcesSelect.appendChild(option);
                         break;
                 }
-
                 // console.log(device);
             });
         }).catch(function (e) {
