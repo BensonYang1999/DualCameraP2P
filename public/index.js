@@ -180,7 +180,6 @@ socket.on("offer", (id, description) => {
         console.log(event.streams)
         if (remotevideo.srcObject !== event.streams[0]) {
             remotevideo.srcObject = event.streams[0];
-            getResolution(event.streams[0]);
         }
 
     }
@@ -262,7 +261,10 @@ $(document).ready(() => {
         console.log("muted");
         $('#remoteVideo').prop("muted", !$('#remoteVideo').prop("muted"));
     })
-    $('#btn_resolution').click(() => {
+    $('#btn_local_res').click(() => {
+        getResolution(localvideo.srcObject);
+    })
+    $('#btn_remote_res').click(() => {
         getResolution(remotevideo.srcObject);
     })
 })
