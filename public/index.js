@@ -24,6 +24,8 @@ navigator.mediaDevices
         let stream_height = stream_settings.height;
         console.log('Width: ' + stream_width + 'px');
         console.log('Height: ' + stream_height + 'px');
+        socket.emit("log", 'Width: ' + stream_width + 'px');
+        socket.emit("log", 'Height: ' + stream_height + 'px');
         
         localvideo.srcObject = stream;
         localStream = stream;
