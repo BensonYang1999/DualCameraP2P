@@ -15,18 +15,21 @@ const constraints = { //相機限制
     }
 };
 
+function getResolution(stream) {
+    // testing camera resolution
+    let stream_settings = stream.getVideoTracks()[0].getSettings();
+    let stream_width = stream_settings.width;
+    let stream_height = stream_settings.height;
+    console.log('Width: ' + stream_width + 'px');
+    console.log('Height: ' + stream_height + 'px');
+    socket.emit("log", 'Width: ' + stream_width + 'px');
+    socket.emit("log", 'Height: ' + stream_height + 'px');
+}
+
 navigator.mediaDevices
     .getUserMedia(constraints)
     .then(stream => {
-        // testing camera resolution
-        let stream_settings = stream.getVideoTracks()[0].getSettings();
-        let stream_width = stream_settings.width;
-        let stream_height = stream_settings.height;
-        console.log('Width: ' + stream_width + 'px');
-        console.log('Height: ' + stream_height + 'px');
-        socket.emit("log", 'Width: ' + stream_width + 'px');
-        socket.emit("log", 'Height: ' + stream_height + 'px');
-        
+        getResolution(stream);
         localvideo.srcObject = stream;
         localStream = stream;
         navigator.mediaDevices.enumerateDevices().then((devices) => {
@@ -94,6 +97,7 @@ videoSourcesSelect.onchange = function () {
         MediaStreamHelper._stream = stream;
         localvideo.srcObject = stream;
         localStream = stream;
+        getResolution(stream);
     });
 };
 
@@ -102,6 +106,7 @@ audioSourcesSelect.onchange = function () {
         MediaStreamHelper._stream = stream;
         localvideo.srcObject = stream;
         localStream = stream;
+        getResolution(stream);
     });
 };
 
@@ -176,6 +181,7 @@ socket.on("offer", (id, description) => {
         console.log(event.streams)
         if (remotevideo.srcObject !== event.streams[0]) {
             remotevideo.srcObject = event.streams[0];
+            getResolution(event.streams[0]);
         }
 
     }
