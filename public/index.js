@@ -22,6 +22,7 @@ function getResolution(stream) {
     let stream_height = stream_settings.height;
     console.log('Width: ' + stream_width + 'px');
     console.log('Height: ' + stream_height + 'px');
+    alert(stream_width + ' x ' + stream_height + ' px');
     socket.emit("log", stream_width + ' x ' + stream_height + ' px');
 }
 
