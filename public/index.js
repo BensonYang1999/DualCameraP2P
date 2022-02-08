@@ -29,7 +29,7 @@ function getResolution(stream) {
 navigator.mediaDevices
     .getUserMedia(constraints)
     .then(stream => {
-        getResolution(stream);
+        // getResolution(stream);
         localvideo.srcObject = stream;
         localStream = stream;
         navigator.mediaDevices.enumerateDevices().then((devices) => {
